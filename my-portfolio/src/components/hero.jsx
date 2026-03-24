@@ -34,7 +34,7 @@ export default function Hero() {
       {/* Nav */}
       <nav className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 md:px-16 lg:px-24 py-6 z-10">
         <span className="text-white font-bold text-lg tracking-tight">
-          shinzo<span className="text-indigo-400">.</span>
+          Shinzo<span className="text-indigo-400">.</span>
         </span>
         <div className="flex items-center gap-8">
           <a href="#work" className="text-xs tracking-widest text-gray-400 hover:text-white transition-colors duration-200">
