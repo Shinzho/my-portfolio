@@ -16,6 +16,7 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="relative px-8 md:px-16 lg:px-24 py-24">
+      {/* Section label */}
       <div className="flex items-center gap-4 mb-14">
         <div className="w-8 h-px bg-indigo-500" />
         <span className="text-xs tracking-widest text-indigo-400 uppercase">
@@ -23,9 +24,20 @@ export default function ProjectsSection() {
         </span>
       </div>
 
-      <div className="flex items-end justify-between mb-6">
-        <h2 className="text-white text-2xl font-bold">Dev Work</h2>
-        <span className="text-gray-600 text-xs select-none">
+      <div className="flex items-end justify-between mb-8">
+        <h2 className="text-white text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">
+          Things I've
+          <br />
+          <span
+            style={{
+              WebkitTextStroke: "1px rgba(255,255,255,0.25)",
+              color: "transparent",
+            }}
+          >
+            built.
+          </span>
+        </h2>
+        <span className="text-gray-600 text-xs select-none hidden sm:block">
           Drag or scroll to see more →
         </span>
       </div>

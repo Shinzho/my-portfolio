@@ -1,8 +1,10 @@
 // src/App.jsx
 import { useEffect } from "react";
 import Hero from "./components/hero";
-import WorkSection from "./components/experience/workSection";
+import About from "./components/about";
+import TechStack from "./components/techStack";
 import ProjectsSection from "./components/experience/projectsSection";
+import Contact from "./components/contact";
 
 function useHashScroll() {
   useEffect(() => {
@@ -28,16 +30,10 @@ function App() {
   return (
     <main className="bg-gray-950 text-white min-h-screen">
       <Hero />
-      <WorkSection />
+      <About />
+      <TechStack />
       <ProjectsSection />
-
-      <section id="about" className="px-8 md:px-16 lg:px-24 py-24">
-        <h2 className="text-4xl font-bold text-white">About</h2>
-      </section>
-
-      <section id="contact" className="px-8 md:px-16 lg:px-24 py-24">
-        <h2 className="text-4xl font-bold text-white">Contact</h2>
-      </section>
+      <Contact />
     </main>
   );
 }

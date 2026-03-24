@@ -15,7 +15,7 @@ export default function ProjectCard({ item, onClick }) {
   return (
     <div
       onClick={() => onClick(item)}
-      className="group relative shrink-0 w-110 bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden cursor-pointer hover:border-indigo-500/50 transition-all duration-300"
+      className="group relative shrink-0 w-[420px] bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden cursor-pointer hover:border-indigo-500/50 transition-all duration-300"
     >
       {/* Image carousel */}
       <div className="relative h-52 overflow-hidden bg-gray-800">
@@ -41,13 +41,22 @@ export default function ProjectCard({ item, onClick }) {
             ))}
           </div>
         )}
-        <div className="absolute inset-0 bg-linear-to-t from-gray-900/60 to-transparent" />
+        {/* Type badge over image */}
+        <div className="absolute top-3 left-3">
+          <span className="px-2 py-0.5 text-[10px] tracking-widest uppercase text-indigo-400 border border-indigo-500/40 bg-gray-950/70 backdrop-blur-sm rounded-full">
+            {item.type}
+          </span>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="p-8">
-        <h3 className="text-white font-bold text-lg mb-1">{item.title}</h3>
-        <p className="text-gray-400 text-sm leading-relaxed line-clamp-4 mb-6">
+      <div className="p-6">
+        <h3 className="text-white font-bold text-lg mb-0.5">{item.title}</h3>
+        {item.role && (
+          <p className="text-indigo-300 text-xs mb-3">{item.role}</p>
+        )}
+        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 mb-5">
           {item.description}
         </p>
 

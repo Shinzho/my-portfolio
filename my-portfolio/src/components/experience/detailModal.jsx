@@ -4,20 +4,17 @@ import { useEffect, useState } from "react";
 export default function DetailModal({ item, isProject, onClose }) {
   const [current, setCurrent] = useState(0);
 
-  // Lock scroll
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
   }, []);
 
-  // Escape to close
   useEffect(() => {
     const handler = (e) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  // Image carousel
   useEffect(() => {
     if (!item.images || item.images.length <= 1) return;
     const timer = setInterval(() => {
@@ -40,9 +37,12 @@ export default function DetailModal({ item, isProject, onClose }) {
               <h2 className="text-white text-xl font-bold leading-snug">
                 {item.title}
               </h2>
-              <p className="text-indigo-300 text-sm mt-0.5">
-                {item.company || item.tags?.join(" · ")}
-              </p>
+              {item.subtitle && (
+                <p className="text-gray-500 text-xs mt-0.5">{item.subtitle}</p>
+              )}
+              {item.role && (
+                <p className="text-indigo-300 text-sm mt-1">{item.role}</p>
+              )}
             </div>
             <button
               onClick={onClose}
@@ -53,13 +53,12 @@ export default function DetailModal({ item, isProject, onClose }) {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="h-px bg-gray-800 mx-6" />
 
         {/* Content */}
         <div className="overflow-y-auto flex-1 px-6 py-5 space-y-5">
 
-          {/* Image carousel (projects only) */}
+          {/* Image carousel */}
           {isProject && item.images && (
             <div className="relative h-48 rounded-xl overflow-hidden bg-gray-800">
               {item.images.map((src, i) => (
@@ -88,7 +87,7 @@ export default function DetailModal({ item, isProject, onClose }) {
             </div>
           )}
 
-          {/* Type badge + period */}
+          {/* Type badge */}
           <div className="flex items-center gap-3">
             {item.type && (
               <span className="px-2 py-0.5 text-[10px] tracking-widest uppercase text-indigo-400 border border-indigo-500/30 rounded-full">
@@ -100,10 +99,14 @@ export default function DetailModal({ item, isProject, onClose }) {
             )}
           </div>
 
-          {/* Description */}
-          <p className="text-gray-300 text-sm leading-relaxed">
-            {item.description}
-          </p>
+          {/* Description — handle newlines */}
+          <div className="space-y-3">
+            {item.description.split("\n\n").map((para, i) => (
+              <p key={i} className="text-gray-300 text-sm leading-relaxed">
+                {para}
+              </p>
+            ))}
+          </div>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
@@ -120,18 +123,24 @@ export default function DetailModal({ item, isProject, onClose }) {
           {/* Project links */}
           {isProject && (
             <div className="flex gap-3 pt-1">
-              <a
-                href={item.link}
-                className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-full transition-colors"
-              >
-                Live ↗
-              </a>
-              <a
-                href={item.repo}
-                className="px-5 py-2 border border-gray-700 hover:border-gray-500 text-gray-300 text-xs font-semibold rounded-full transition-colors"
-              >
-                GitHub ↗
-              </a>
+              {item.link && (
+                <a
+                  href={item.link}
+                  className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-full transition-colors"
+                >
+                  Live ↗
+                </a>
+              )}
+              {item.repo && (
+                <a
+                  href={item.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 border border-gray-700 hover:border-gray-500 text-gray-300 text-xs font-semibold rounded-full transition-colors"
+                >
+                  GitHub ↗
+                </a>
+              )}
             </div>
           )}
         </div>
