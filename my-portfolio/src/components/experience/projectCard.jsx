@@ -15,7 +15,7 @@ export default function ProjectCard({ item, onClick }) {
   return (
     <div
       onClick={() => onClick(item)}
-      className="group relative shrink-0 w-[420px] bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden cursor-pointer hover:border-indigo-500/50 transition-all duration-300"
+      className="group relative shrink-0 w-105 bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden cursor-pointer hover:border-indigo-500/50 transition-all duration-300"
     >
       {/* Image carousel */}
       <div className="relative h-52 overflow-hidden bg-gray-800">
@@ -47,7 +47,7 @@ export default function ProjectCard({ item, onClick }) {
             {item.type}
           </span>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-gray-900/60 to-transparent" />
       </div>
 
       {/* Content */}
